@@ -15,6 +15,15 @@ jobs:
     steps:
       - name: Check out website
         uses: actions/checkout@v4
+      - name: Build slideshow photo list
+        run: |
+          python3 - <<'PY'
+          import json, pathlib
+          folder = pathlib.Path('images/slideshow')
+          files = sorted(str(p.relative_to(folder)) for p in folder.rglob('*') if p.is_file() and p.suffix.lower() in {'.jpg','.jpeg','.png','.webp','.gif'})
+          pathlib.Path('slideshow.json').write_text(json.dumps(files, ensure_ascii=False), encoding='utf-8')
+          print(f'{len(files)} slideshow photos found')
+          PY
       - name: Deploy to Azure Static Web Apps
         uses: Azure/static-web-apps-deploy@v1
         with:
