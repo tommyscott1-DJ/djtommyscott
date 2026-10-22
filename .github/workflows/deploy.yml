@@ -15,6 +15,11 @@ jobs:
     steps:
       - name: Check out website
         uses: actions/checkout@v4
+      - name: Extract uploaded slideshow archive
+        run: |
+          if [ -f DJTS_Website_Photos.zip ]; then
+            unzip -o -q DJTS_Website_Photos.zip
+          fi
       - name: Build slideshow photo list
         run: |
           python3 - <<'PY'
