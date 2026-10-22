@@ -39,7 +39,7 @@ jobs:
           python3 - <<'PY'
           import json, pathlib
           folder = pathlib.Path('images/slideshow')
-          files = sorted(str(p.relative_to(folder)) for p in folder.rglob('*') if p.is_file() and p.suffix.lower() in {'.jpg','.jpeg','.png','.webp','.gif'})
+          files = sorted(str(p.relative_to(folder)) for p in folder.rglob('*') if p.is_file() and p.suffix.lower() in {'.jpg','.jpeg','.png','.webp','.gif'} and p.name.lower() != 'photo-002.jpg')
           pathlib.Path('slideshow.json').write_text(json.dumps(files, ensure_ascii=False), encoding='utf-8')
           print(f'{len(files)} slideshow photos found')
           PY
