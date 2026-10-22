@@ -31,7 +31,7 @@ const dots=slideBox.querySelector('.slide-dots');
 const fallback=slideBox.querySelector('.slide-fallback');
 let current=0;
 function showPhoto(i){if(!weddingPhotos.length)return;current=(i+weddingPhotos.length)%weddingPhotos.length;const item=weddingPhotos[current];let img=slideBox.querySelector('img');if(!img){img=document.createElement('img');img.alt='DJ Tommy Scott wedding celebration';slideBox.insertBefore(img,fallback)}img.src=item;img.alt='Wedding and event photo '+(current+1);fallback.hidden=true;[...dots.children].forEach((b,n)=>b.setAttribute('aria-current',String(n===current)))}
-if(weddingPhotos.length){weddingPhotos.forEach((_,i)=>{const b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Show photo '+(i+1));b.addEventListener('click',()=>showPhoto(i));dots.appendChild(b)});showPhoto(0);if(weddingPhotos.length>1){setInterval(()=>showPhoto(current+1),4000)}}else{slideBox.querySelectorAll('.slide-arrow').forEach(b=>b.disabled=true)}
+if(weddingPhotos.length){weddingPhotos.forEach((_,i)=>{const b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Show photo '+(i+1));b.addEventListener('click',()=>showPhoto(i));dots.appendChild(b)});showPhoto(0);if(weddingPhotos.length>1){setInterval(()=>showPhoto(current+1),2000)}}else{slideBox.querySelectorAll('.slide-arrow').forEach(b=>b.disabled=true)}
 slideBox.querySelector('.prev').addEventListener('click',()=>showPhoto(current-1));
 slideBox.querySelector('.next').addEventListener('click',()=>showPhoto(current+1));
 </script></body></html>
